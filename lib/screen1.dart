@@ -84,6 +84,8 @@ class _ScreenOneState extends State<ScreenOne> {
                   Column(
                     children: [
                       CircleAvatar(
+                        radius: 40,
+                        backgroundColor: Colors.white38,
                         child: Image.asset("assets/images/love.png",
                             height: 75, width: 75),
                       ),
@@ -93,12 +95,15 @@ class _ScreenOneState extends State<ScreenOne> {
                       Text("Love")
                     ],
                   ),
-                  SizedBox(
-                    width: 8,
-                  ),
+                  // ),
+                  // SizedBox(
+                  //   width: 8,
+                  // ),
                   Column(
                     children: [
                       CircleAvatar(
+                        radius: 40,
+                        backgroundColor: Colors.white38,
                         child: Image.asset("assets/images/cool.png",
                             height: 75, width: 75),
                       ),
@@ -108,12 +113,14 @@ class _ScreenOneState extends State<ScreenOne> {
                       Text("Cool")
                     ],
                   ),
-                  SizedBox(
-                    width: 8,
-                  ),
+                  // SizedBox(
+                  //   width: 8,
+                  // ),
                   Column(
                     children: [
                       CircleAvatar(
+                        radius: 40,
+                        backgroundColor: Colors.white38,
                         child: Image.asset("assets/images/happy.png",
                             height: 75, width: 75),
                       ),
@@ -123,12 +130,14 @@ class _ScreenOneState extends State<ScreenOne> {
                       Text("Happy")
                     ],
                   ),
-                  SizedBox(
-                    width: 8,
-                  ),
+                  // SizedBox(
+                  //   width: 8,
+                  // ),
                   Column(
                     children: [
                       CircleAvatar(
+                        radius: 40,
+                        backgroundColor: Colors.white38,
                         child: Image.asset("assets/images/sad.png",
                             height: 75, width: 75),
                       ),
@@ -152,7 +161,8 @@ class _ScreenOneState extends State<ScreenOne> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        elevation: 0.0, backgroundColor: Colors.transparent),
+                        elevation: 0.0, backgroundColor: Colors.transparent,
+                        shadowColor: Colors.white38),
                     onPressed: () {},
                     child: Row(
                       children: [
@@ -211,7 +221,9 @@ class _ScreenOneState extends State<ScreenOne> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        elevation: 0.0, backgroundColor: Colors.transparent),
+                        elevation: 0.0, backgroundColor: Colors.transparent,
+                    shadowColor: Colors.white38),
+
                     onPressed: () {},
                     child: Row(
                       children: [
@@ -236,10 +248,30 @@ class _ScreenOneState extends State<ScreenOne> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Image.asset("assets/images/relaxation.png",
-                      width: 200, fit: BoxFit.fitHeight),
-                  Image.asset("assets/images/meditation.png",
-                      width: 200, fit: BoxFit.fitHeight),
+                  ElevatedButton(
+                    onPressed: (){
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0.0,
+                      shadowColor: Colors.white38,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    ),
+                    child: Image.asset("assets/images/relaxation.png",
+                        width: 180, fit: BoxFit.fitHeight),
+                  ),
+                  ElevatedButton(
+                    onPressed: (){
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0.0,
+                      shadowColor: Colors.white38,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    ),
+                    child: Image.asset("assets/images/meditation.png",
+                        width: 180, fit: BoxFit.fitHeight),
+                  ),
                 ],
               ),
               SizedBox(
@@ -248,15 +280,33 @@ class _ScreenOneState extends State<ScreenOne> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Image.asset(
-                    "assets/images/beathing.png",
-                    width: 200,
-                    fit: BoxFit.fitHeight,
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0.0,
+                      shadowColor: Colors.white38,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    ),
+                    child: Image.asset(
+                      "assets/images/beathing.png",
+                      width: 180,
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
-                  Image.asset(
-                    "assets/images/yoga.png",
-                    width: 200,
-                    fit: BoxFit.fitHeight,
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0.0,
+                      shadowColor: Colors.white38,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    ),
+                    child: Image.asset(
+                      "assets/images/yoga.png",
+                      width: 180,
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 ],
               ),
@@ -267,6 +317,7 @@ class _ScreenOneState extends State<ScreenOne> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         // currentIndex: widget.index,
+        currentIndex: index,
         onTap: (value) {
           index = value;
           setState(() {});
@@ -294,14 +345,22 @@ class _ScreenOneState extends State<ScreenOne> {
           BottomNavigationBarItem(
               icon: ImageIcon(AssetImage("assets/images/user-03.png")),
               label: ".",
-              backgroundColor: Colors.white),
+              backgroundColor: Colors.white,
+              ),
         ],
         selectedItemColor: Colors.green,
         unselectedItemColor: Colors.black38,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+        type: BottomNavigationBarType.shifting,
       ),
 
 
     );
   }
-
+  List<Widget> tabs = [
+    ScreenOne(),
+    ScreenTwo(),
+    ScreenThree(),
+  ];
 }
