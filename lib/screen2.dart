@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 
 class ScreenTwo extends StatefulWidget {
   static const String routeName = "screen2";
+ // late final String outerTab;
 
   @override
   State<ScreenTwo> createState() => _ScreenTwoState();
 }
 
 class _ScreenTwoState extends State<ScreenTwo> {
+  //late final TabController _tabController;
   int index=0;
   int currentIndex=0;
   @override
@@ -62,7 +66,13 @@ class _ScreenTwoState extends State<ScreenTwo> {
                   SizedBox(
                     width: 200,
                   ),
-                  Icon(Icons.notifications)
+                  badges.Badge(
+                      position: badges.BadgePosition.topEnd(top: -2, end: -2),
+                      showBadge: true,
+                      ignorePointer: false,
+                      onTap: () {},
+                      child: Icon(Icons.notifications_none_outlined, color: Colors.black, size: 26)
+                  ),
                 ],
               ),
               SizedBox(
@@ -221,35 +231,27 @@ class _ScreenTwoState extends State<ScreenTwo> {
                 height: 20,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   TabBar(
-                      indicatorWeight: 10,
+                      //controller: _tabController,
+                      indicatorWeight: 3,
                       isScrollable: true,
+                      indicatorColor: Color(0xFF363F72),
                       tabs: <Widget>[
-                    Text("All Type"),
-                    Text("Full Body"),
-                    Text("Upper"),
-                    Text("Lower"),
-                  ]),
-                ],
-              ),
-              // Row(
-              //   children: [
-              //     TabBarView(children: [
-              //       Column(
-              //         children: [Image.asset("assets/images/Plank2.png",),
-              //         SizedBox(height: 20,),
-              //         Image.asset("assets/images/Plank.png")],
-              //       ),Container()
-              //       ,Container(),
-              //       Container(),
-              //     ]),
-              //   ],
-              // )
-
+                    Text("All Type",style: TextStyle(fontSize: 20,
+                    ),),
+                    Text("Full Body",style: TextStyle(fontSize: 20,
+                    )),
+                    Text("Upper",style: TextStyle(fontSize: 20,
+                    )),
+                    Text("Lower",style: TextStyle(fontSize: 20,
+                    )),
+                  ],unselectedLabelColor: Colors.black54,
+                  labelColor: Color(0xFF363F72)),
             ],
           ),
-        ),
+        ]),),
         bottomNavigationBar: BottomNavigationBar(
           // currentIndex: widget.index,
           currentIndex: index,
