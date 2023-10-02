@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:test_route/screen2.dart';
 import 'package:test_route/screen3.dart';
+import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 
 class ScreenOne extends StatefulWidget {
   static const String routeName = "screen1";
@@ -12,6 +15,7 @@ class ScreenOne extends StatefulWidget {
 
 class _ScreenOneState extends State<ScreenOne> {
   int index=0;
+  int currentIndex=0;
 
   final CarouselController _controller = CarouselController();
   @override
@@ -43,10 +47,13 @@ class _ScreenOneState extends State<ScreenOne> {
                   SizedBox(
                     width: 300,
                   ),
-                  Icon(
-                    Icons.notifications,
-                    color: Colors.black,
-                  )
+                  badges.Badge(
+                    position: badges.BadgePosition.topEnd(top: -2, end: -2),
+                    showBadge: true,
+                    ignorePointer: false,
+                    onTap: () {},
+                    child: Icon(Icons.notifications_none_outlined, color: Colors.black, size: 26)
+                  ),
                 ],
               ),
               SizedBox(
@@ -184,31 +191,50 @@ class _ScreenOneState extends State<ScreenOne> {
               SizedBox(
                 height: 7,
               ),
-              CarouselSlider(
-                  items: [
-                    Image.asset(
-                      "assets/images/walking2.png",
-                      fit: BoxFit.fitWidth,
+              Container(
+                width: 900,
+                child: CarouselSlider(
+                    items: [
+                      Image.asset(
+                        "assets/images/Frame 24.png",
+                        fit: BoxFit.fitWidth,
+                        width: 970,
+                      ),
+                      Image.asset("assets/images/Frame 24.png",
+                          fit: BoxFit.fitWidth,
+                        width: 970,),
+                      Image.asset("assets/images/Frame 24.png",
+                          fit: BoxFit.fitWidth,
+                        width: 970,),
+                      //assets/images/walking2.png
+                    ],
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                      aspectRatio: 16 / 9,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      viewportFraction: 0.8,
+                      height: 150,
+                      onPageChanged: (index,reason){
+                        setState(() {
+                          currentIndex=index;
+                        });
+                      }
+
                     ),
-                    Image.asset("assets/images/walking2.png",
-                        fit: BoxFit.fitWidth),
-                    Image.asset("assets/images/walking2.png",
-                        fit: BoxFit.fitWidth),
-                    Image.asset("assets/images/walking2.png",
-                        fit: BoxFit.fitWidth),
-                    //assets/images/walking2.png
-                  ],
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    enlargeCenterPage: true,
-                    aspectRatio: 16 / 9,
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    viewportFraction: 0.8,
-                    height: 150,
-                  ),
-                  carouselController: _controller),
+                    carouselController: _controller),
+              ),
+              DotsIndicator(dotsCount: 3,
+              position: currentIndex.toDouble(),
+              decorator: DotsDecorator(
+                activeColor: Colors.blueGrey,
+                color:Colors.black38 ,
+                size: Size(7, 7),
+                activeSize: Size(8,8)
+              )),
+
               SizedBox(
                 height: 10,
               ),
@@ -330,11 +356,7 @@ class _ScreenOneState extends State<ScreenOne> {
               label: ".",
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
-            icon: InkWell(
-              onTap: (){
-                Navigator.pushNamed(context, ScreenTwo.routeName);
-              },
-                child: ImageIcon(AssetImage("assets/images/Icon.png"))),
+            icon: ImageIcon(AssetImage("assets/images/Icon.png")),
             label: ".",
             backgroundColor: Colors.white,
           ),

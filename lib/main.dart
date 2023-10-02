@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_route/screen1.dart';
 import 'package:test_route/screen2.dart';
 import 'package:test_route/screen3.dart';
+import 'package:badges/badges.dart' as badges;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
