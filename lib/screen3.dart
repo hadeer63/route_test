@@ -11,6 +11,8 @@ class ScreenThree extends StatefulWidget {
 class _ScreenThreeState extends State<ScreenThree> {
   int index=0;
   int currentIndex=0;
+  int? _value = 1;
+  List<String> _options = ['Discover', 'News', 'Most Viewed','Saved'];
 
   final CarouselController _controller = CarouselController();
   @override
@@ -73,6 +75,33 @@ class _ScreenThreeState extends State<ScreenThree> {
                 ),
               ],
             ),
+            SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              Wrap(
+                spacing: 10.0,
+                children: List<Widget>.generate(
+                  4,
+                      (int index) {
+                    return ChoiceChip(
+                      label: Text(_options[index],style: TextStyle(fontSize: 20),),
+                      backgroundColor: Color(0xFFE4E7EC),
+                      selectedColor: Color(0xFFD6BBFB),
+                      selectedShadowColor: Color(0xFFD6BBFB),
+
+                      elevation: 0.0,
+                      selected: _value == index,
+                      onSelected: (bool selected) {
+                        setState(() {
+                          _value = selected ? index : null;
+                        });
+                      },
+                    );
+                  },
+                ).toList(),
+              ),
+            ],),
             SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
